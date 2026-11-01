@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>THE HAIR J 메뉴</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 매장 인쇄 메뉴처럼 흰 바탕 + 검정 굵은 글씨. 상단 고정 탭 3개, 아래로 한 줄 목록 */
+:root {
+  --bg: #F4F4F3;
+  --surface: #FFFFFF;
+  --ink: #141414;
+  --muted: #6E6E6B;
+  --line: #D9D9D6;
+  --accent: #141414;
+  --on-accent: #FFFFFF;
+  --t-mens: #3E8FD0;
+  --t-silver: #8E9190;
+  --t-gold: #B98A4A;
+  --t-premium: #4A4F9E;
+  --t-platinum: #D23A55;
+  --en: "Archivo", "Arial Black", sans-serif;
+  --body: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111; --surface: #1B1B1B; --ink: #F1F1EF; --muted: #A2A29E; --line: #2E2E2C;
+    --accent: #F1F1EF; --on-accent: #111111;
+    --t-mens: #6FB3EA; --t-silver: #B8BBBA; --t-gold: #D9AE70; --t-premium: #9097E6; --t-platinum: #F07A90;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111111; --surface: #1B1B1B; --ink: #F1F1EF; --muted: #A2A29E; --line: #2E2E2C;
+  --accent: #F1F1EF; --on-accent: #111111;
+  --t-mens: #6FB3EA; --t-silver: #B8BBBA; --t-gold: #D9AE70; --t-premium: #9097E6; --t-platinum: #F07A90;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 560px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header { padding-block: 28px 4px; }
+.brand { font-family: var(--en); font-style: italic; font-weight: 800; font-size: 1.6rem; letter-spacing: -0.02em; margin: 0; line-height: 1.1; }
+.brand-ko { color: var(--muted); font-size: 0.85rem; margin: 6px 0 0; }
+
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 14px; }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px; }
+.tabs button { font: inherit; font-size: 0.92rem; font-weight: 700; border: 0; border-radius: 999px; padding: 10px 4px; background: transparent; color: var(--muted); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+.tabs button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+main { padding-block: 8px 40px; }
+section { display: flex; flex-direction: column; gap: 32px; }
+h2 { font-family: var(--en); font-style: italic; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.01em; margin: 0; line-height: 1.2; }
+.note { color: var(--muted); font-size: 0.82rem; margin: 0; }
+
+/* 가격표 */
+.table-head { display: grid; grid-template-columns: 1fr 5.5rem 5.5rem; align-items: end; gap: 8px; padding-bottom: 8px; border-bottom: 1.5px solid var(--ink); }
+.table-head.one { grid-template-columns: 1fr 5.5rem; }
+.col { font-size: 0.72rem; font-weight: 700; color: var(--muted); text-align: right; letter-spacing: 0.04em; }
+.row { display: grid; grid-template-columns: 1fr 5.5rem 5.5rem; gap: 8px; padding-block: 11px; border-bottom: 1px solid var(--line); }
+.row.one .p { color: var(--ink); font-weight: 700; }
+.row.one { grid-template-columns: 1fr 5.5rem; }
+.row:last-child { border-bottom: 0; }
+.row .n { font-weight: 500; letter-spacing: 0.02em; min-width: 0; }
+.row .p { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.row .m { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.row .n small { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; color: var(--muted); margin-top: 1px; }
+.row-note { padding-top: 8px; font-weight: 500; }
+.stylist { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 4px; }
+.stylist b { font-size: 1.05rem; }
+.row .n small.opt { font-weight: 500; letter-spacing: 0; font-size: 0.78rem; }
+.event { background: var(--surface); border: 1.5px solid var(--ink); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; }
+.event b { font-size: 1rem; }
+.event span { font-size: 0.82rem; color: var(--muted); }
+.stylist span { color: var(--muted); font-size: 0.85rem; }
+
+/* 드링크 */
+.drink-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 8px; border-bottom: 1.5px solid var(--ink); }
+.drink-head span { font-size: 0.78rem; font-weight: 700; color: var(--muted); }
+.drink-list { list-style: none; margin: 0; padding: 0; }
+.drink-list li { padding-block: 12px; border-bottom: 1px solid var(--line); font-weight: 500; }
+.drink-list li:last-child { border-bottom: 0; }
+.free { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+/* 멤버십 */
+.tiers { display: grid; gap: 10px; }
+.tier { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; gap: 8px; }
+.tier-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.tier-name { font-family: var(--en); font-style: italic; font-weight: 800; font-size: 1.3rem; line-height: 1; }
+.tier-amt { font-weight: 900; font-size: 1.35rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.tier ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: 0.9rem; }
+.tier li::before { content: "·"; margin-right: 6px; color: var(--muted); }
+.tier li.hi { font-weight: 700; }
+.products { display: grid; gap: 6px; }
+.products p { margin: 0; font-size: 0.88rem; }
+.products b { font-family: var(--en); font-style: italic; }
+.rules { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: 0.8rem; color: var(--muted); }
+.rules li::before { content: "*"; margin-right: 4px; }
+
+footer { color: var(--muted); font-size: 0.78rem; padding-block: 16px 32px; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: no-preference) { section { animation: fade .2s ease-out; } @keyframes fade { from { opacity: .4; } } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="brand">THE HAIR J</p>
+  </header>
+  <nav>
+    <div class="tabs" role="tablist">
+      <button id="t-tea" role="tab" aria-selected="true" data-k="tea">드링크</button>
+      <button id="t-member" role="tab" aria-selected="false" data-k="member">멤버십</button>
+      <button id="t-hair" role="tab" aria-selected="false" data-k="hair">가격</button>
+    </div>
+  </nav>
+  <main id="view"></main>
+  <footer id="foot">가격은 모발 길이와 상태에 따라 상담 후 달라질 수 있습니다.</footer>
+</div>
+
+<script>
+/* ===== 메뉴 내용 (여기만 바꾸면 페이지가 바뀝니다) ===== */
+const DRINK = [
+  { title: "COFFEE", items: ["아메리카노", "믹스커피"] },
+  { title: "TEA", items: ["그린티", "메밀차", "결명자차"] },
+  { title: "JUICE", temp: "", items: ["망고", "샤인머스캣", "알로에"] },
+];
+
+const POINTS = ["현금 결제 5% 적립", "카드 결제 1% 적립"];
+const TIERS = [
+  { name: "men's",    color: "--t-mens" },
+  { name: "silver",   color: "--t-silver" },
+  { name: "gold",     color: "--t-gold" },
+  { name: "premium",  color: "--t-premium" },
+  { name: "platinum", color: "--t-platinum" },
+];
+const RULES = [
+  "가족, 친구, 지인과 함께 사용 가능합니다.",
+  "사용기한은 구매일로부터 1년입니다.",
+  "클리닉, 부분시술 제외",
+  "당일 사용금액이 멤버십의 70% 미만일 경우에만 구매가 가능합니다.",
+  "구매 후 환불을 원하시는 경우 받으셨던 회원혜택 + 부가세 10% + 카드수수료 2%를 제외한 나머지 금액이 환불됩니다.",
+];
+
+const STYLIST = { title: "점장" };
+const EVENT = { title: "가을맞이 평일 펌·염색 10% 할인", detail: "~ 11월 30일까지 · 기장 추가 없음 · 부분시술 제외" };
+/* [시술명, 옵션, 가격] — 옵션이 없으면 "" */
+const HAIR = [
+  { title: "CUT", rows: [
+    ["남성 컷트", "앞머리 컷트 예약 불가", "17,000"],
+    ["여성 컷트", "샴푸 미포함", "19,000"],
+    ["학생 컷트", "초등~고등학생 · 디자인컷트 시 추가요금 · 다운펌(양옆) 추가 시 +15,000", "15,000"],
+    ["유아 컷트", "0~7세", "15,000"],
+    ["남성 컷트 + 다운펌", "양옆 사이드 · 윗머리·뒷머리 추가요금", "32,000"],
+    ["남성 컷트 + 두피 스케일링", "", "29,000"],
+    ["여성 컷트 + 두피 스케일링", "샴푸 포함", "34,000"]] },
+  { title: "PERM", note: "기장 추가 없음", rows: [
+    ["유아 펌", "베이비펌 ~7세 · 앞머리펌 예약 불가(전화예약)", "50,000"],
+    ["주니어 펌", "초등학생 8~13세", "60,000"],
+    ["여자 볼륨펌", "기본 베이직 펌", "75,000"],
+    ["여자 특수펌", "히피펌·롤스트레이트 · 컷트 포함 · 약제 업그레이드 시 추가요금", "95,000"],
+    ["셋팅", "C컬·S컬 열펌 · 컷트 포함", "85,000"],
+    ["여자 매직 스트레이트", "컷트 포함", "95,000"],
+    ["여자 볼륨매직", "컷트 포함", "105,000"],
+    ["여자 뿌리매직", "", "85,000"],
+    ["여자 매직셋팅 & 매직디지털", "컷트 포함", "135,000"],
+    ["남자 디자인펌", "애즈·가르마·쉐도우·포마드·리젠트·스핀스왈로 등 · 컷트 포함", "75,000"],
+    ["남자 매직 / 볼륨매직", "컷트 포함", "85,000"],
+    ["남자 디자인펌 + 다운펌", "패키지 10% 할인 (정가 95,000)", "85,000"],
+    ["악성곱슬매직", "", "가격 상담"],
+    ["클리닉펌 (무손상펌)", "펌(셋팅) 또는 매직", "가격 상담"]] },
+  { title: "COLOR", note: "기장 추가 없음 · 컷트 요금 별도", rows: [
+    ["베이직 컬러", "3cm 뿌리염색", "45,000"],
+    ["디자인 컬러", "전체", "85,000"],
+    ["오징어먹물", "", "75,000"],
+    ["왁싱", "", "75,000"],
+    ["탈색", "", "85,000"],
+    ["남성 염색 + 컷트", "컷트 포함", "65,000"]] },
+  { title: "CLINIC", rows: [
+    ["베이직 클리닉", "", "30,000"],
+    ["플렉스 클리닉", "", "40,000"],
+    ["모모케어 클리닉", "", "50,000"],
+    ["무코타 클리닉", "", "65,000"],
+    ["신데렐라 클리닉", "기장 추가 없음 · 다른 시술과 동시 가능(추가요금)", "150,000"],
+    ["신데렐라 클리닉 2회+1회", "", "400,000"]] },
+];
+/* ===== 내용 끝 ===== */
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const render = {
+  tea: () => `<section>
+    <p class="free">시술 중 편하게 말씀해 주세요.</p>
+    ${DRINK.map(g => `<div>
+      <div class="drink-head"><h2>${g.title}</h2><span>${g.temp ?? "ICE / HOT"}</span></div>
+      <ul class="drink-list">${g.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
+    </div>`).join("")}
+  </section>`,
+
+  member: () => `<section>
+    <h2>time heal membership</h2>
+    <div class="tiers">${TIERS.map(t => `<div class="tier">
+      <span class="tier-name" style="color:var(${t.color})">${t.name}</span>
+    </div>`).join("")}</div>
+    <p style="margin:0;font-weight:700">${POINTS.map(esc).join(" · ")}</p>
+  </section>`,
+
+  hair: () => `<section>
+    <div class="event"><b>${esc(EVENT.title)}</b><span>${esc(EVENT.detail)}</span></div>
+    ${HAIR.map(g => `<div>
+        <div class="table-head one"><h2>${g.title}</h2><span class="col">가격</span></div>
+        ${g.rows.map(([n, t, p]) => `<div class="row one"><span class="n">${esc(n)}${t ? `<small class="opt">${esc(t)}</small>` : ""}</span><span class="p">${esc(p)}</span></div>`).join("")}
+        ${g.note ? `<p class="note row-note">${esc(g.note)}</p>` : ""}
+      </div>`).join("")}
+  </section>`,
+};
+
+const tabs = [...document.querySelectorAll(".tabs button")];
+function show(k) {
+  tabs.forEach(b => b.setAttribute("aria-selected", b.dataset.k === k));
+  document.getElementById("view").innerHTML = render[k]();
+  document.getElementById("foot").hidden = k !== "hair";
+}
+tabs.forEach(b => b.addEventListener("click", () => { show(b.dataset.k); window.scrollTo(0, 0); }));
+const h = location.hash.slice(1);
+show(render[h] ? h : "tea");
+</script>
+
+</body>
+</html>
