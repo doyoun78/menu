@@ -77,6 +77,10 @@ h2 { font-family: var(--en); font-style: italic; font-weight: 800; font-size: 1.
 .event { background: var(--surface); border: 1.5px solid var(--ink); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; }
 .event b { font-size: 1rem; }
 .event span { font-size: 0.82rem; color: var(--muted); }
+.promo { background: var(--surface); border: 1.5px solid var(--ink); border-radius: 14px; padding: 22px 20px; display: grid; gap: 4px; }
+.promo-title { margin: 0; font-weight: 900; font-size: 1.3rem; line-height: 1.35; letter-spacing: -0.01em; text-wrap: balance; }
+.promo ul { list-style: none; margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: 0.95rem; font-weight: 500; }
+.promo li::before { content: "·"; margin-right: 6px; color: var(--muted); }
 .stylist span { color: var(--muted); font-size: 0.85rem; }
 
 /* 드링크 */
@@ -115,7 +119,7 @@ footer { color: var(--muted); font-size: 0.78rem; padding-block: 16px 32px; bord
   <nav>
     <div class="tabs" role="tablist">
       <button id="t-tea" role="tab" aria-selected="true" data-k="tea">드링크</button>
-      <button id="t-member" role="tab" aria-selected="false" data-k="member">멤버십</button>
+      <button id="t-member" role="tab" aria-selected="false" data-k="member">이벤트</button>
       <button id="t-hair" role="tab" aria-selected="false" data-k="hair">가격</button>
     </div>
   </nav>
@@ -148,7 +152,10 @@ const RULES = [
 ];
 
 const STYLIST = { title: "점장" };
-const EVENT = { title: "가을맞이 평일 펌·염색 10% 할인", detail: "~ 11월 30일까지 · 기장 추가 없음 · 부분시술 제외" };
+const EVENT = {
+  title: ["2026년 평일 할인행사!", "모든 시술 10% 할인 이벤트"],
+  lines: ["평일 펌·컬러 10% 할인", "기장 추가 없습니다!", "~ 12월 31일까지", "부분시술은 제외됩니다"],
+};
 /* [시술명, 옵션, 가격] — 옵션이 없으면 "" */
 const HAIR = [
   { title: "CUT", rows: [
@@ -203,15 +210,14 @@ const render = {
   </section>`,
 
   member: () => `<section>
-    <h2>time heal membership</h2>
-    <div class="tiers">${TIERS.map(t => `<div class="tier">
-      <span class="tier-name" style="color:var(${t.color})">${t.name}</span>
-    </div>`).join("")}</div>
-    <p style="margin:0;font-weight:700">${POINTS.map(esc).join(" · ")}</p>
+    <div class="promo">
+      ${EVENT.title.map(t => `<p class="promo-title">${esc(t)}</p>`).join("")}
+      <ul>${EVENT.lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+    </div>
   </section>`,
 
   hair: () => `<section>
-    <div class="event"><b>${esc(EVENT.title)}</b><span>${esc(EVENT.detail)}</span></div>
+    <div class="event"><b>${EVENT.title.map(esc).join(" ")}</b><span>${EVENT.lines.map(esc).join(" · ")}</span></div>
     ${HAIR.map(g => `<div>
         <div class="table-head one"><h2>${g.title}</h2><span class="col">가격</span></div>
         ${g.rows.map(([n, t, p]) => `<div class="row one"><span class="n">${esc(n)}${t ? `<small class="opt">${esc(t)}</small>` : ""}</span><span class="p">${esc(p)}</span></div>`).join("")}
