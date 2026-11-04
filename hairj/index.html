@@ -81,6 +81,12 @@ h2 { font-family: var(--en); font-style: italic; font-weight: 800; font-size: 1.
 .promo-title { margin: 0; font-weight: 900; font-size: 1.3rem; line-height: 1.35; letter-spacing: -0.01em; text-wrap: balance; }
 .promo ul { list-style: none; margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: 0.95rem; font-weight: 500; }
 .promo li::before { content: "·"; margin-right: 6px; color: var(--muted); }
+.deal { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.deal-name { font-weight: 700; font-size: 1.05rem; }
+.deal-price { display: grid; justify-items: end; gap: 2px; font-variant-numeric: tabular-nums; }
+.deal-price s { color: var(--muted); font-size: 0.9rem; }
+.deal-price b { font-size: 1.35rem; font-weight: 900; }
+.deal-price em { font-style: normal; color: var(--t-platinum); }
 .stylist span { color: var(--muted); font-size: 0.85rem; }
 
 /* 드링크 */
@@ -135,7 +141,7 @@ const DRINK = [
   { title: "JUICE", temp: "", items: ["망고", "샤인머스캣", "알로에"] },
 ];
 
-const POINTS = ["현금 결제 5% 적립", "카드 결제 1% 적립"];
+const POINTS = ["현금 결제 10% 적립", "카드 결제 1% 적립"];
 const TIERS = [
   { name: "men's",    color: "--t-mens" },
   { name: "silver",   color: "--t-silver" },
@@ -156,6 +162,7 @@ const EVENT = {
   title: ["2026년 평일 할인행사!", "모든 시술 10% 할인 이벤트"],
   lines: ["평일 펌·컬러 10% 할인", "기장 추가 없습니다!", "~ 12월 31일까지", "부분시술은 제외됩니다"],
 };
+const EVENT2 = { title: "도윤 스타일리스트 이벤트", item: "헤어컨설팅 + 컷", was: "50,000", rate: "50%", now: "25,000" };
 /* [시술명, 옵션, 가격] — 옵션이 없으면 "" */
 const HAIR = [
   { title: "CUT", rows: [
@@ -214,6 +221,14 @@ const render = {
       ${EVENT.title.map(t => `<p class="promo-title">${esc(t)}</p>`).join("")}
       <ul>${EVENT.lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
     </div>
+    <div class="promo">
+      <p class="promo-title">${esc(EVENT2.title)}</p>
+      <div class="deal">
+        <span class="deal-name">${esc(EVENT2.item)}</span>
+        <span class="deal-price"><s>${esc(EVENT2.was)}원</s><b><em>${esc(EVENT2.rate)}</em> ${esc(EVENT2.now)}원</b></span>
+      </div>
+    </div>
+    <p style="margin:0;font-weight:700">${POINTS.map(esc).join(" · ")}</p>
   </section>`,
 
   hair: () => `<section>
